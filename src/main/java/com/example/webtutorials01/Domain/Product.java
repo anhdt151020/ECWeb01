@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "products")
+@Table(name = "Products")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product implements Serializable {

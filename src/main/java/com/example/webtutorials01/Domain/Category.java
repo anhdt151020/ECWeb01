@@ -10,16 +10,17 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "categories")
+@Table(name = "Categories")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Category implements Serializable {
 
     @Id
-    private String Id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
 
     @Column(name = "Name")
-    private String Name;
+    private String name;
 
     @OneToMany(mappedBy = "category")
     List<Product> products;

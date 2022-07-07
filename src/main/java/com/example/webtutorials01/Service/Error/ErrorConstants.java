@@ -1,4 +1,4 @@
-package com.tracer.app.web.rest.errors;
+package com.example.webtutorials01.Service.Error;
 
 import java.net.URI;
 

@@ -8,17 +8,19 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("categories")
 public class CategoryController {
 
     private final CategoryService categoryService;
-    private final CategoryRepository categoryRepository;
 
-    public CategoryController(CategoryService categoryService, CategoryRepository categoryRepository) {
+
+    public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
-        this.categoryRepository = categoryRepository;
     }
 
     @GetMapping("newOrEdit")
@@ -30,9 +32,19 @@ public class CategoryController {
 
     @PostMapping("saveOrUpdate")
     public String saveOrUpdate(ModelMap model, Category item){
-        categoryRepository.save(item);
+        categoryService.save(item);
         model.addAttribute("message", "New category is saved!");
-        return "categories/newOrEdit";
+        return "redirect:/categories";
+    }
+
+    @GetMapping
+    public String list(ModelMap model,@RequestParam Optional<String> messages){
+        if (messages.isPresent()){
+            model.addAttribute("messages",messages.get());
+        }
+
+        model.addAttribute("categories", categoryService.getListCategory());
+        return "categories/list";
     }
 
 }

@@ -8,17 +8,27 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>New Or Edit Category</h1>
+    <h1>List of Categories</h1>
     <hr/>
-    <form th:action= "@{/categories/saveOrUpdate}"
-    method="post" th:object = "${category}">
-        Category ID:
-        <input type="text" placeholder="Category ID" th:field="*{Id}"/>
-        <br/> <br/>
-        Name:
-        <input type="text" placeholder="Name" th:field="*{Name}"/>
-        <br/> <br/>
-        <input type="submit" value="Save">
-    </form>
+    <a th:href ="@{/categories/newOrEdit}">New Categories</a>
+    <hr/>
+    <div th:if = "${messages != null}">
+        <h3 th:text = "${messages}"></h3>
+    </div>
+    <table>
+        <tr>
+            <td>Category ID</td>
+            <td>Name</td>
+            <td></td>
+        </tr>
+        <tr th:each = "item :${categories}" >
+            <td th:text ="${item.id}"></td>
+            <td th:text ="${item.name}"></td>
+            <td>
+                <a th:href="@{'/categories/newOrEdit/' + '${item.id}'}"> Edit </a>
+                <a th:href="@{'/categories/delete/' + '${item.id}'}"> Delete </a>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

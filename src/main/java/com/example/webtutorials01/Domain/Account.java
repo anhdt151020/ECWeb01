@@ -17,18 +17,18 @@ import java.io.Serializable;
 public class Account implements Serializable {
 
     @Id
-    private String UserName;
+    private String userName;
 
-    private String FullName;
+    private String fullName;
 
-    private String Password;
+    private String password;
 
-    private String Email;
+    private String email;
 
-    private String Photo;
+    private String photo;
 
-    private Boolean Activated;
+    private Boolean activated;
 
-    private Boolean Admin;
+    private Boolean admin;
 
 }
